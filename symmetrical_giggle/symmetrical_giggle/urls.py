@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from .rest.routers import router
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('feed/', include('feed.urls')),
+    path("admin/", admin.site.urls),
+    path("auth/", include("rest_framework.urls", namespace="rest")),
+    path('users/', include(router.urls)),
+    path("feed/", include("feed.urls"))
 ]
